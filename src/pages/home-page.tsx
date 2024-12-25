@@ -2,9 +2,16 @@ import { useState } from 'react';
 import reactLogo from '../assets/react.svg';
 import viteLogo from '/vite.svg';
 import './home-page.css';
+import { useNavigate } from 'react-router';
+
 
 export function HomePage() {
-  const [params, setParams] = useState<string>();
+  const [params, setParams] = useState<string>("");
+  const navigate = useNavigate()
+
+  const handleRedirect = () => {
+    navigate(`/redirect?params=${params}`)
+  }
 
   return (
     <>
@@ -26,7 +33,7 @@ export function HomePage() {
             onChange={(e) => setParams(e.target.value)}
           />
         </div>
-        <button className="button">Do redirect</button>
+        <button className="button" onClick={handleRedirect}>Do redirect</button>
       </div>
     </>
   );
